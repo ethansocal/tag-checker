@@ -7,12 +7,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+        
       - name: Check for Tag
         run: |
-          TAG="0.1"
-          if [ $(git tag -l "${TAG}") ]; then
+          TAG="0.2"
+          if git show-ref --tags --verify --quiet "refs/tags/${TAG}"; then
             echo "Tag ${TAG} exists"
           else
             echo "Tag ${TAG} does not exist"
