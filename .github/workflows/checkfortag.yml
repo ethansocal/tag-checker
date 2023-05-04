@@ -1,0 +1,17 @@
+name: Check for Tag
+
+on: push
+
+jobs:
+  check-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check for Tag
+        run: |
+          TAG="0.1"
+          if [ $(git tag -l "${TAG}") ]; then
+            echo "Tag ${TAG} exists"
+          else
+            echo "Tag ${TAG} does not exist"
+          fi
